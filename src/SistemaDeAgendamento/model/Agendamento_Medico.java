@@ -1,7 +1,7 @@
 package SistemaDeAgendamento.model;
 
 public class Agendamento_Medico extends Paciente {
-	
+
 	private String dataAgendamentoMedico;
 
 	public Agendamento_Medico(int codigoPaciente, String nomePaciente, int idadePaciente, String generoPaciente,
@@ -20,9 +20,9 @@ public class Agendamento_Medico extends Paciente {
 		this.dataAgendamentoMedico = dataAgendamentoMedico;
 	}
 
-	// CRIAR MÉTODO MARCAR CONSULTA
-	public boolean marcarDataConsulta (String dataAgendamentoMedico) {
-		if(this.getDataAgendamentoMedico() == null) {
+	// CRIAR Mï¿½TODO MARCAR CONSULTA
+	public boolean marcarDataConsulta(String dataAgendamentoMedico) {
+		if (this.getDataAgendamentoMedico() == null) {
 			System.out.println("\nInsira uma data do tipo DD/MM/AA");
 			return false;
 		}

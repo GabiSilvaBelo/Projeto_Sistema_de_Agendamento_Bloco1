@@ -1,7 +1,7 @@
 package SistemaDeAgendamento.model;
 
 public abstract class Paciente {
-	
+
 	private int codigoPaciente;
 	private String nomePaciente;
 	private int idadePaciente;
@@ -11,7 +11,7 @@ public abstract class Paciente {
 	private String cpfPaciente;
 	private String telefonePaciente;
 	private String convenioPaciente;
-	
+
 	public Paciente(int codigoPaciente, String nomePaciente, int idadePaciente, String generoPaciente,
 			String enderecoPaciente, String emailPaciente, String cpfPaciente, String telefonePaciente,
 			String convenioPaciente) {
@@ -98,18 +98,18 @@ public abstract class Paciente {
 	public void setConvenioPaciente(String convenioPaciente) {
 		this.convenioPaciente = convenioPaciente;
 	}
-	
+
 	public void visualizarDados() {
 		System.out.println("\nDados do paciente:");
-		System.out.println("\nNome: "+this.nomePaciente);
-		System.out.println("\nIdade: "+this.idadePaciente);
-		System.out.println("\nGênero: "+this.generoPaciente);
-		System.out.println("\nEndereço: "+this.emailPaciente);
-		System.out.println("\nCPF: "+this.cpfPaciente);
-		System.out.println("\nTelefone: "+this.telefonePaciente);
-		System.out.println("\nConvênio: "+this.convenioPaciente);
-		System.out.println("\nCódigo do Paciente: "+this.codigoPaciente);
+		System.out.println("\nNome: " + this.nomePaciente);
+		System.out.println("\nIdade: " + this.idadePaciente);
+		System.out.println("\nGï¿½nero: " + this.generoPaciente);
+		System.out.println("\nEndereï¿½o: " + this.emailPaciente);
+		System.out.println("\nCPF: " + this.cpfPaciente);
+		System.out.println("\nTelefone: " + this.telefonePaciente);
+		System.out.println("\nConvï¿½nio: " + this.convenioPaciente);
+		System.out.println("\nCï¿½digo do Paciente: " + this.codigoPaciente);
 		System.out.println("\n");
 	}
-	
+
 }

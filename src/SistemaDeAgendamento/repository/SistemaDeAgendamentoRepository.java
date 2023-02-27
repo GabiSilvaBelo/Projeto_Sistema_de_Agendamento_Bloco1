@@ -14,5 +14,5 @@ public interface SistemaDeAgendamentoRepository {
 // METODOS DO SISTEMA
 	
 	public void marcarConsulta ();
-	public void marcarExame();
+	public void marcarExame(int codigoPaciente);
 }

@@ -1,10 +1,10 @@
 package SistemaDeAgendamento.model;
 
 public class Agendamento_Exame extends Paciente {
-	
+
 	private String dataAgendamentoExame;
 	private String tipoExame;
-	
+
 	public Agendamento_Exame(int codigoPaciente, String nomePaciente, int idadePaciente, String generoPaciente,
 			String enderecoPaciente, String emailPaciente, String cpfPaciente, String telefonePaciente,
 			String convenioPaciente, String dataAgendamentoExame, String tipoExame) {
@@ -30,5 +30,5 @@ public class Agendamento_Exame extends Paciente {
 		this.tipoExame = tipoExame;
 	}
 
-  // CRIAR MÉTODO MARCAR EXAME
+	// CRIAR Mï¿½TODO MARCAR EXAME
 }
