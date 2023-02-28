@@ -27,21 +27,21 @@ public class Menu {
 		paciente.cadastrarPaciente(paciente2);
 
 		while (true) {
-			System.out.println("1 - Cadastrar um paciente:"); // OK
-			System.out.println("2 - Marcar uma consulta:");
-			System.out.println("3 - Marcar um exame:");
-			System.out.println("4 - Listar pacientes no sistema:"); // OK
-			System.out.println("5 - Buscar cadastro de paciente:"); // OK
-			System.out.println("6 - Deletar paciente do sistema:"); // OK
-			System.out.println("7 - Atualizar dados de paciente:"); // OK
-			System.out.println("0 - Sair");
-			System.out.println("\n");
-			System.out.print("Op��o escolhida: ");
+			System.out.println("\033[1m\033[33m=== Sistema de Agendamento ===\033[0m\n");
+			System.out.println("\033[34m1 - Cadastrar um paciente:\033[0m"); //OK
+			System.out.println("\033[34m2 - Marcar uma consulta:\033[0m");
+			System.out.println("\033[34m3 - Marcar um exame:\033[0m"); //OK
+			System.out.println("\033[34m4 - Listar pacientes no sistema:\033[0m"); //OK
+			System.out.println("\033[34m5 - Buscar cadastro de paciente:\033[0m"); //OK
+			System.out.println("\033[34m6 - Deletar paciente do sistema:\033[0m"); //ok
+			System.out.println("\033[34m7 - Atualizar dados de paciente:\033[0m"); //OK
+			System.out.println("\033[34m0 - Sair\033[0m\n");
+			System.out.print("\033[32mOpção escolhida: \033[0m");
 
 			try {
 				opcao = scanner.nextInt();
 			} catch (InputMismatchException e) {
-				System.out.println("\nDigite um numero v�lido das op��es do menu abaixo ");
+				System.out.println("\nDigite um numero válido das opções do menu abaixo ");
 				System.out.println("\n\n");
 				scanner.nextLine();
 				opcao = 0;
@@ -67,11 +67,11 @@ public class Menu {
 				scanner.skip("\\R?");
 				idadePaciente = scanner.nextInt();
 
-				System.out.println("\nDigite o g�nero que o paciente se identifica: ");
+				System.out.println("\nDigite o gênero que o paciente se identifica: ");
 				scanner.skip("\\R?");
 				generoPaciente = scanner.nextLine();
 
-				System.out.println("\nDigite o endere�o do paciente: ");
+				System.out.println("\nDigite o endereço do paciente: ");
 				scanner.skip("\\R?");
 				enderecoPaciente = scanner.nextLine();
 
@@ -87,7 +87,7 @@ public class Menu {
 				scanner.skip("\\R?");
 				telefonePaciente = scanner.nextLine();
 
-				System.out.println("\nDigite o conv�nio do paciente se houver, se n�o digite apenas 'Particular' ");
+				System.out.println("\nDigite o convênio do paciente se houver, se não digite apenas 'Particular' ");
 				scanner.skip("\\R?");
 				convenioPaciente = scanner.nextLine();
 
@@ -173,7 +173,7 @@ public class Menu {
 
 				System.out.println("\nBuscar cadastro de paciente ");
 
-				System.out.println("\nDigite o c�digo do paciente : ");
+				System.out.println("\nDigite o c[odigo do paciente : ");
 				codigoPaciente = scanner.nextInt();
 
 				paciente.procurarPorCodigoPaciente(codigoPaciente);
@@ -185,7 +185,7 @@ public class Menu {
 
 				System.out.println("\nDeletar paciente do sistema ");
 
-				System.out.println("\nDigite o c�digo do paciente : ");
+				System.out.println("\nDigite o código do paciente : ");
 				codigoPaciente = scanner.nextInt();
 
 				paciente.deletarPaciente(codigoPaciente);
@@ -197,7 +197,7 @@ public class Menu {
 
 				System.out.println("\nAtualizar cadastro de paciente ");
 
-				System.out.println("\nDigite o c�digo do paciente : ");
+				System.out.println("\nDigite o código do paciente : ");
 				codigoPaciente = scanner.nextInt();
 
 				if (paciente.buscarNaCollection(codigoPaciente) != null) {
@@ -222,11 +222,11 @@ public class Menu {
 					scanner.skip("\\R?");
 					telefonePaciente = scanner.nextLine();
 
-					System.out.println("\nAtualize o conv�nio do paciente: ");
+					System.out.println("\nAtualize o convênio do paciente: ");
 					scanner.skip("\\R?");
 					convenioPaciente = scanner.nextLine();
 
-					System.out.println("\nAtualize o g�nero do paciente: ");
+					System.out.println("\nAtualize o gênero do paciente: ");
 					scanner.skip("\\R?");
 					generoPaciente = scanner.nextLine();
 
@@ -245,7 +245,7 @@ public class Menu {
 
 			default:
 
-				System.out.println("\nOpc�o Invalida ");
+				System.out.println("\nOpcão Invalida ");
 				keyPress();
 			}
 		}
@@ -258,7 +258,7 @@ public class Menu {
 			System.in.read();
 		} catch (IOException e) {
 
-			System.out.println("\nVoc� pressionou uma tecla diferente de Enter ! ");
+			System.out.println("\nVocê pressionou uma tecla diferente de Enter ! ");
 		}
 
 	}
