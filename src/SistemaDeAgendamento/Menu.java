@@ -99,6 +99,8 @@ public class Menu {
 				break;
 
 			case 2:
+				paciente.marcarConsulta();
+				
 				keyPress();
 				break;
 
@@ -107,59 +109,16 @@ public class Menu {
 				System.out.println("Informe o código do paciente:");
 				codigoPaciente = scanner.nextInt();
 				var pacienteExame = paciente.buscarNaCollection(codigoPaciente);
-
-				if (pacienteExame != null) {
-					System.out.println("Informe a data do agendamento do exame (dd/mm/aaaa):");
-					String dataAgendamentoExame = scanner.next();
-
-					System.out.println("Selecione o tipo de exame:");
-					System.out.println("1 - Hemograma");
-					System.out.println("2 - Glicemia");
-					System.out.println("3 - Raio-X");
-					System.out.println("4 - Ultrassonografia");
-					System.out.println("5 - Tomografia");
-					int tipoExameSelecionado = scanner.nextInt();
-
-					String tipoExame = "";
-
-					switch (tipoExameSelecionado) {
-					case 1:
-						tipoExame = "Hemograma";
-						break;
-					case 2:
-						tipoExame = "Glicemia";
-						break;
-					case 3:
-						tipoExame = "Raio-X";
-						break;
-					case 4:
-						tipoExame = "Ultrassonografia";
-						break;
-					case 5:
-						tipoExame = "Tomografia";
-						break;
-					default:
-						System.out.println("Opção inválida!");
-						return;
-					}
-					Agendamento_Exame agendamentoExame = new Agendamento_Exame(pacienteExame.getCodigoPaciente(),
-							pacienteExame.getNomePaciente(), pacienteExame.getIdadePaciente(),
-							pacienteExame.getGeneroPaciente(), pacienteExame.getEnderecoPaciente(),
-							pacienteExame.getEmailPaciente(), pacienteExame.getCpfPaciente(),
-							pacienteExame.getTelefonePaciente(), pacienteExame.getConvenioPaciente(),
-							dataAgendamentoExame, tipoExame);
-
-					System.out.println("\nAgendamento do exame realizado com sucesso para o paciente "
-							+ pacienteExame.getNomePaciente() + "!");
-					System.out.println("Data do agendamento: " + agendamentoExame.getDataAgendamentoExame());
-					System.out.println("Tipo de exame: " + agendamentoExame.getTipoExame());
+				
+				if(pacienteExame != null) {
+					paciente.marcarExame(codigoPaciente);
 				} else {
-					System.out.println("O código "+ codigoPaciente +" não foi encontrado!");
+					System.out.println("\nO código de número " + codigoPaciente + " não foi encontrada!");
 				}
-
-				paciente.marcarExame(codigoPaciente);
-				keyPress();
-				break;
+				
+				
+			    keyPress();
+			    break;
 
 			case 4:
 
