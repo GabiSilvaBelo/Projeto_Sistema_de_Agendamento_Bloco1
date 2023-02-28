@@ -1,14 +1,19 @@
 package SistemaDeAgendamento.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import SistemaDeAgendamento.model.Agendamento_Exame;
+import SistemaDeAgendamento.model.Agendamento_Medico;
 import SistemaDeAgendamento.model.Paciente;
 import SistemaDeAgendamento.repository.SistemaDeAgendamentoRepository;
 
 public class SistemaDeAgendamentoController implements SistemaDeAgendamentoRepository {
 
 	Scanner scanner = new Scanner(System.in);
+	private List<Agendamento_Exame> listaAgendamentosExames = new ArrayList<>();
+	private List<Agendamento_Medico> listaAgendamentosMedicos = new ArrayList<>();
 	private ArrayList<Paciente> ListaPacientes = new ArrayList<Paciente>();
 
 	@Override
@@ -42,10 +47,9 @@ public class SistemaDeAgendamentoController implements SistemaDeAgendamentoRepos
 	@Override
 	public void marcarConsulta() {
 		int codigoPaciente, especialidade;
-		String data;
+		String dataAgendamentoMedico;
 		System.out.println("Insira o código do paciente:");
 		codigoPaciente = scanner.nextInt();
-
 		var pacienteConsulta = buscarNaCollection(codigoPaciente);
 
 		if (pacienteConsulta != null) {
@@ -68,17 +72,25 @@ public class SistemaDeAgendamentoController implements SistemaDeAgendamentoRepos
 					System.out.println("05/03");
 					System.out.println("10/03");
 					System.out.println("15/03");
-					data = scanner.next();
+					dataAgendamentoMedico = scanner.next();
 
-					if (!data.equals("01/03") && !data.equals("05/03") && !data.equals("10/03")
-							&& !data.equals("15/03")) {
+					if (!dataAgendamentoMedico.equals("01/03") && !dataAgendamentoMedico.equals("05/03")
+							&& !dataAgendamentoMedico.equals("10/03") && !dataAgendamentoMedico.equals("15/03")) {
 						System.out.println("Data inválida. Tente novamente.");
 					}
-				} while (!data.equals("01/03") && !data.equals("05/03") && !data.equals("10/03")
-						&& !data.equals("15/03"));
+				} while (!dataAgendamentoMedico.equals("01/03") && !dataAgendamentoMedico.equals("05/03")
+						&& !dataAgendamentoMedico.equals("10/03") && !dataAgendamentoMedico.equals("15/03"));
 
 				System.out.println("Consulta agendada!");
-				System.out.println("Paciente " + pacienteConsulta.getNomePaciente() + " agendado para " + data);
+				System.out.println("Paciente " + codigoPaciente + " agendado para " + dataAgendamentoMedico);
+				
+				Agendamento_Medico agendamentoConsultaOrtopedista = new Agendamento_Medico(pacienteConsulta.getCodigoPaciente(),
+						pacienteConsulta.getNomePaciente(), pacienteConsulta.getIdadePaciente(),
+						pacienteConsulta.getGeneroPaciente(), pacienteConsulta.getEnderecoPaciente(),
+						pacienteConsulta.getEmailPaciente(), pacienteConsulta.getCpfPaciente(),
+						pacienteConsulta.getTelefonePaciente(), pacienteConsulta.getConvenioPaciente(),
+						dataAgendamentoMedico, especialidade);
+				listaAgendamentosMedicos.add(agendamentoConsultaOrtopedista);
 				break;
 
 			case 2:
@@ -88,23 +100,31 @@ public class SistemaDeAgendamentoController implements SistemaDeAgendamentoRepos
 					System.out.println("05/03");
 					System.out.println("10/03");
 					System.out.println("15/03");
-					data = scanner.next();
+					dataAgendamentoMedico = scanner.next();
 
-					if (!data.equals("01/03") && !data.equals("05/03") && !data.equals("10/03")
-							&& !data.equals("15/03")) {
+					if (!dataAgendamentoMedico.equals("01/03") && !dataAgendamentoMedico.equals("05/03")
+							&& !dataAgendamentoMedico.equals("10/03") && !dataAgendamentoMedico.equals("15/03")) {
 						System.out.println("Data inválida. Tente novamente.");
 					}
-				} while (!data.equals("01/03") && !data.equals("05/03") && !data.equals("10/03")
-						&& !data.equals("15/03"));
+				} while (!dataAgendamentoMedico.equals("01/03") && !dataAgendamentoMedico.equals("05/03")
+						&& !dataAgendamentoMedico.equals("10/03") && !dataAgendamentoMedico.equals("15/03"));
+
+				Agendamento_Medico agendamentoConsultaGeral = new Agendamento_Medico(pacienteConsulta.getCodigoPaciente(),
+						pacienteConsulta.getNomePaciente(), pacienteConsulta.getIdadePaciente(),
+						pacienteConsulta.getGeneroPaciente(), pacienteConsulta.getEnderecoPaciente(),
+						pacienteConsulta.getEmailPaciente(), pacienteConsulta.getCpfPaciente(),
+						pacienteConsulta.getTelefonePaciente(), pacienteConsulta.getConvenioPaciente(),
+						dataAgendamentoMedico, especialidade);
+				listaAgendamentosMedicos.add(agendamentoConsultaGeral);
+				
+				System.out.println(listaAgendamentosMedicos.isEmpty());
 
 				System.out.println("Consulta agendada!");
-				System.out.println("Paciente " + pacienteConsulta.getNomePaciente() + " agendado para " + data);
+				System.out.println("Paciente " + codigoPaciente + " agendado para " + dataAgendamentoMedico);
 				break;
 			}
-		} else {
-			System.out.println("O código inserido não foi encontrado!");
-		}
 
+		}
 	}
 
 	@Override
@@ -114,10 +134,6 @@ public class SistemaDeAgendamentoController implements SistemaDeAgendamentoRepos
 		var pacienteExame = buscarNaCollection(codigoPaciente);
 
 		if (pacienteExame != null) {
-			/*
-			 * System.out.println("Informe a data do agendamento do exame (dd/mm):"); String
-			 * dataAgendamentoExame = scanner.next();
-			 */
 
 			System.out.println("Selecione o tipo de exame:");
 			System.out.println("1 - Hemograma");
@@ -165,6 +181,14 @@ public class SistemaDeAgendamentoController implements SistemaDeAgendamentoRepos
 			} while (!dataAgendamentoExame.equals("07/03") && !dataAgendamentoExame.equals("14/03")
 					&& !dataAgendamentoExame.equals("21/03") && !dataAgendamentoExame.equals("28/03"));
 
+			Agendamento_Exame agendamentoExame = new Agendamento_Exame(pacienteExame.getCodigoPaciente(),
+					pacienteExame.getNomePaciente(), pacienteExame.getIdadePaciente(),
+					pacienteExame.getGeneroPaciente(), pacienteExame.getEnderecoPaciente(),
+					pacienteExame.getEmailPaciente(), pacienteExame.getCpfPaciente(),
+					pacienteExame.getTelefonePaciente(), pacienteExame.getConvenioPaciente(), dataAgendamentoExame,
+					tipoExame);
+			listaAgendamentosExames.add(agendamentoExame);
+
 			System.out.println("\nAgendamento do exame realizado com sucesso para o/a paciente "
 					+ pacienteExame.getNomePaciente() + "!");
 			System.out.println("Data do agendamento: " + dataAgendamentoExame);
@@ -211,6 +235,22 @@ public class SistemaDeAgendamentoController implements SistemaDeAgendamentoRepos
 
 		else
 			System.out.println("\nO paciente com o c�digo " + codigoPaciente + " n�o foi encontrado ! ");
+	}
+
+	public void mostrarAgendamentos() {
+	    System.out.println("Agendamentos de exames:");
+	    for (Agendamento_Exame agendamento : listaAgendamentosExames) {
+	        System.out.println(
+	        		agendamento.getNomePaciente() + " - "
+	        + agendamento.getDataAgendamentoExame() +
+	                " - " + agendamento.getTipoExame());
+	    }
+
+	    System.out.println("Agendamentos de consultas:");
+	    for (Agendamento_Medico agendamento : listaAgendamentosMedicos) {
+	        System.out.println(agendamento.getNomePaciente() + " - " + agendamento.getDataAgendamentoMedico() +
+	                " - " + (agendamento.getEspecialidade() == 1 ? "Clínico Geral" : "Ortopedista"));
+	    }
 	}
 
 }
