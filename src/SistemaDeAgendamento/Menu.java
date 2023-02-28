@@ -153,6 +153,8 @@ public class Menu {
 							+ pacienteExame.getNomePaciente() + "!");
 					System.out.println("Data do agendamento: " + agendamentoExame.getDataAgendamentoExame());
 					System.out.println("Tipo de exame: " + agendamentoExame.getTipoExame());
+				} else {
+					System.out.println("O código "+ codigoPaciente +" não foi encontrado!");
 				}
 
 				paciente.marcarExame(codigoPaciente);
